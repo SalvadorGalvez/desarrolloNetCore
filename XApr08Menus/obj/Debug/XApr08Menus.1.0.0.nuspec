@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>XApr08Menus</id>
+    <version>1.0.0</version>
+    <authors>XApr08Menus</authors>
+    <description>Package Description</description>
+    <dependencies>
+      <group targetFramework="net5.0-windows7.0" />
+    </dependencies>
+    <frameworkReferences>
+      <group targetFramework="net5.0-windows7.0">
+        <frameworkReference name="Microsoft.WindowsDesktop.App.WindowsForms" />
+      </group>
+    </frameworkReferences>
+  </metadata>
+  <files>
+    <file src="C:\Users\salva\source\repos\XApr08Menus\XApr08Menus\bin\Debug\net5.0-windows\XApr08Menus.runtimeconfig.json" target="lib\net5.0-windows7.0\XApr08Menus.runtimeconfig.json" />
+    <file src="C:\Users\salva\source\repos\XApr08Menus\XApr08Menus\bin\Debug\net5.0-windows\XApr08Menus.dll" target="lib\net5.0-windows7.0\XApr08Menus.dll" />
+  </files>
+</package>

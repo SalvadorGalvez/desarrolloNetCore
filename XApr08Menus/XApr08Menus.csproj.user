@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Compile Update="views\Bitacora\bitacoraConsulta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="views\Carreras\carrerasAgregar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="views\Carreras\carrerasModificar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="views\CombosyListas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="views\DatosInstitucionales\institucionModificar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="views\Departamentos\departamentosAgregar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="views\Departamentos\departamentosModificar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="views\Directivos\directivosAgregar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="views\Directivos\directivosModificar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="views\Secundario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="views\Principal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="views\Actas\actasFirmar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="views\Actas\actasVisualizar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="views\Alumnos\alumnosAgregar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="views\Alumnos\alumnosModificar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="views\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="views\LugaresTitulacion\lugarAgregar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="views\LugaresTitulacion\lugarModificar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="views\Profesores\profesoresAgregar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="views\Profesores\profesoresModificar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="views\Titulaciones\titulacionAgregar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="views\Titulaciones\titulacionModificar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="views\Usuarios\usuariosAgregar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="views\Usuarios\usuariosDesactivar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="views\Usuarios\usuariosModificar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>
