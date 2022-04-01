@@ -188,7 +188,7 @@ namespace XApr08Menus
 
         private void desactivarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            muestraFormulario(new views.Usuarios.usuariosDesactivar(modelo));
+            //muestraFormulario(new views.Usuarios.usuariosDesactivar(modelo));
         }
 
         private void modificarToolStripMenuItem3_Click(object sender, EventArgs e)

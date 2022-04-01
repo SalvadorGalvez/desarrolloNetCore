@@ -46,29 +46,93 @@ namespace XApr08Menus.Utilerias
             { 3,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
         };
 
-        private static readonly string[] querys = new string[6] {
+        private static readonly string[] querys = new string[10] {
             "EXEC sp_Login '{0}', '{1}';",
             "EXEC sp_Logout '{0}';",
             "EXEC sp_InsertarUsuario '{0}', '{1}', '{2}', '{3}', '{4}';",
             "SELECT ID, Nombre FROM Departamentos",
             "SELECT Clave, Nombre FROM Carreras",
-            "SELECT noTarjeta, Nombre FROM Profesores"
+            "SELECT noTarjeta, Nombre FROM Profesores",
+            "SELECT Usuario, Nombre FROM Usuarios",
+            "EXEC sp_BorrarUsuario '{0}', '{1}'",
+            "SELECT Estado FROM usuarios WHERE Usuario = '{0}' AND Borrado = 0;",
+            "EXEC sp_CambiarEstadoUsuario {0},'{1}','{2}'"
         };
 
-        private static readonly string[] filtros = new string[6] {
+        private static readonly string[] filtros = new string[10] {
             "","","","",
             "IDDepto = '{0}'",
-            "ClaveCarrera = '{0}'"
+            "ClaveCarrera = '{0}'",
+            "Tipo > 0",
+            "",
+            "",
+            ""
         };
 
-        private static Dictionary<string, string> LeerRegistros(int nQ, ArrayList param)
+        private static readonly string noBorrado = "Borrado = 0";
+
+        public static void BorrarUsuario(int nQ, string usr, string usra)
+        {
+            string[] param = new string[2] { usr, usra};
+            ejecutarNonQuery(crearQuery(param,nQ));
+        }
+
+        public static void cambiarEstadoUsuario(bool estado, string usr, string usra)
+        {
+            string est = "0";
+            if (estado)
+            {
+                est = "1";
+            }
+            ejecutarNonQuery(crearQuery(new string[3] { est, usr, usra }, 9));
+        }
+
+        private static void ejecutarNonQuery(string q)
+        {
+            SqlConnection con = new SqlConnection(sCn);
+            SqlCommand cmd = new SqlCommand(q, con);
+            con.Open();
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+
+        public static bool estadoUsuario(string usr)
+        {
+            return queryEstadoUsuario(usr);
+        }
+
+        private static bool queryEstadoUsuario(string usr)
+        {
+            bool estado = false;
+            SqlConnection con = new SqlConnection(sCn);
+            SqlCommand cmd = new SqlCommand(crearQuery(new string[1] { usr }, 8), con);
+            con.Open();
+            SqlDataReader r = cmd.ExecuteReader();
+            while ( r.Read() )
+            {
+                estado = r.GetBoolean(0);
+            }
+            con.Close();
+            return estado;
+        }
+        private static Dictionary<string, string> LeerRegistros(int nQ, ArrayList param, bool incluirBorrado)
         {
             Dictionary<string, string> datos = new Dictionary<string, string>();
-            string q = querys[nQ] + " ";
+            string q = querys[nQ] + " WHERE ";
 
-            if (nQ < 3 || nQ > 5)
+            /*if (nQ < 3 || nQ > 5)
             {
                 throw new Exception("Error general...");
+            }*/
+
+            if (nQ == 6)
+            {
+                q = q + filtros[nQ] + " AND ";
+            }
+
+            if (!incluirBorrado)
+            {
+                q = q + noBorrado;
             }
 
             if (param.Count > 0)
@@ -111,12 +175,12 @@ namespace XApr08Menus.Utilerias
             return datos;
         }
 
-        public static void LlenarLstBox(ListBox lst, Button btn, int nQ, ArrayList param)
+        public static void LlenarLstBox(ListBox lst, Button btn, int nQ, ArrayList param, bool incluirBorrados)
         {
             Dictionary<string, string> datos = new Dictionary<string, string>();
 
             LimpiarListBox(lst, btn);
-            datos = LeerRegistros(nQ, param);
+            datos = LeerRegistros(nQ, param, incluirBorrados);
             lst.DataSource = new BindingSource(datos, null);
             lst.DisplayMember = "Value";
             lst.ValueMember = "Key";
@@ -143,17 +207,14 @@ namespace XApr08Menus.Utilerias
             btn.Enabled = estado;
         }
 
-        public static void llenarCombo(ComboBox cmb, Button btn, int nQ, ArrayList param)
+        public static void llenarCombo(ComboBox cmb, Button btn, int nQ, ArrayList param, bool incluirBorrados)
         {
             Dictionary<string, string> datos = new Dictionary<string, string>();
-            if (nQ < 3 || nQ > 5)
-            {
-                throw new Exception("Error general...");
-            }
+            
 
             LimpiarCombo(cmb, btn);
 
-            datos = LeerRegistros(nQ, param);
+            datos = LeerRegistros(nQ, param, incluirBorrados);
             cmb.DataSource = new BindingSource(datos, null);
             cmb.DisplayMember = "Value";
             cmb.ValueMember = "Key";
@@ -196,15 +257,6 @@ namespace XApr08Menus.Utilerias
             }
             con.Close();
             return aux;
-        }
-
-        private static void ejecutarNonQuery(string q)
-        {
-            SqlConnection con = new SqlConnection(sCn);
-            SqlCommand cmd = new SqlCommand(q, con);
-            con.Open();
-            cmd.ExecuteNonQuery();
-            con.Close();
         }
 
         public static void cerrarApp(string usuario)

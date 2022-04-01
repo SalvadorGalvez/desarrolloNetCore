@@ -18,7 +18,7 @@ namespace XApr08Menus
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CombosyListas());
+            Application.Run(new views.Usuarios.usuariosDesactivar());
         }
     }
 }

@@ -18,15 +18,15 @@ namespace XApr08Menus.views
         {
             InitializeComponent();
             ArrayList param = new ArrayList();
-            Querys.llenarCombo(cmbDeptos, btnDeptos, 3, param);
-            Querys.LlenarLstBox(lstDepto,btnDepto,3, param);
+            Querys.llenarCombo(cmbDeptos, btnDeptos, 3, param, false);
+            Querys.LlenarLstBox(lstDepto,btnDepto,3, param, false);
         }
 
         private void btnDeptos_Click(object sender, EventArgs e)
         {
             ArrayList param = new ArrayList();
             param.Add(cmbDeptos.SelectedValue.ToString());
-            Querys.llenarCombo(cmbCarreras, btnCarrera, 4 ,param);
+            Querys.llenarCombo(cmbCarreras, btnCarrera, 4 ,param, false);
             Querys.LimpiarCombo(cmbProfesores, btnProfesores);
         }
 
@@ -34,7 +34,7 @@ namespace XApr08Menus.views
         {
             ArrayList param = new ArrayList();
             param.Add(cmbCarreras.SelectedValue.ToString());
-            Querys.llenarCombo(cmbProfesores, btnProfesores, 5, param);
+            Querys.llenarCombo(cmbProfesores, btnProfesores, 5, param, false);
         }
 
         private void btnProfesores_Click(object sender, EventArgs e)
@@ -52,7 +52,7 @@ namespace XApr08Menus.views
                 {
                     param.Add(((KeyValuePair<string,string>)lstDepto.SelectedItems[x]).Key);
                 }
-                Querys.LlenarLstBox(lstCarrera, btnCarreraL, 4, param);
+                Querys.LlenarLstBox(lstCarrera, btnCarreraL, 4, param, false);
             } else
             {
                 Querys.LimpiarListBox(lstCarrera, btnCarreraL);
@@ -70,7 +70,7 @@ namespace XApr08Menus.views
                 {
                     param.Add(((KeyValuePair<string,string>)lstCarrera.SelectedItems[x]).Key);
                 }
-                Querys.LlenarLstBox(lstProfes, btnProfesL,5,param);
+                Querys.LlenarLstBox(lstProfes, btnProfesL,5,param, false);
             } else
             {
                 Querys.LimpiarListBox(lstProfes, btnProfesL);
